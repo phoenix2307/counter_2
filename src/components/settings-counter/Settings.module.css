@@ -1,0 +1,31 @@
+.settingsCounter{
+    width: 500px;
+    height: 400px;
+    background-color: teal;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.positionMessage {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid aquamarine;
+    width: 90%;
+    height: 60%;
+}
+
+.positionButton {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid aquamarine;
+    width: 90%;
+    height: 15%;
+
+}
