@@ -4,17 +4,15 @@ import s from './Input.module.css'
 type InputPropsType = {
     type: string
     span: string
-    value?: string
-    callBackHandler: ()=> void
+    value: number
+    callBackHandler: (value: string) => void
 
 }
 
-
-
 export const InputCounter = (props: InputPropsType) => {
 
-    const onChangeHandler = () => {
-        props.callBackHandler()
+    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        props.callBackHandler(e.currentTarget.value)
     }
 
     return (

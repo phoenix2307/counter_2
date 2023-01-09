@@ -11,21 +11,33 @@ export type ButtonsType = {
 
 function App() {
 
+    /*
+    Не працює установка стартового значення на дисплеї. Фінішне значення фіксується нормально
+    При резеті завжди падає в нуль
+    Походу є косяки в логіці зі стейтами, або невчасно визивається стейт
+    Продумати, умова порівняння між min і max має робитися в Display...
+
+     */
+
     const buttons: ButtonsType = {
         increment: 'inc',
         reset: 'reset',
         setting: 'set'
     }
 
-    let startValue = 0
-    let maxValue = 5
+    const [minValue, setMinValue] = useState(0)
+    const [maxValue, setMaxValue] = useState(0)
 
+    let startValue = minValue
+    let finishValue = maxValue
+
+    //for Display//---------------------------------------------
     let [valueCounter, setValueCounter] = useState(startValue)
     let [limitValue, setLimitValue] = useState(false)
 
     const incrementValue = () => {
         setValueCounter(++valueCounter)
-        if (valueCounter === maxValue) {
+        if (valueCounter === finishValue) {
             setLimitValue(true)
         }
     }
@@ -35,8 +47,28 @@ function App() {
         setLimitValue(false)
     }
 
+    //for Settings//---------------------------------------------
+
+
+    const changeMinValueInput = (value: string) => {
+        setMinValue(+value)
+    }
+
+    const changeMaxValueInput = (value: string) => {
+        setMaxValue(+value)
+    }
+
+    const setValues = (minValues: number, maxValues: number)=> {
+        setMinValue(minValues)
+        setMaxValue(maxValues)
+        // startValue = minValues
+        // finishValue = maxValues
+    }
+
+
     return (
         <div className="App">
+
             <Display
                 valueCounter={valueCounter}
                 nameButtons={buttons}
@@ -44,7 +76,15 @@ function App() {
                 reset={resetValue}
                 limitValue={limitValue}
             />
-            <Settings/>
+
+            <Settings
+                changeMinValueInput={changeMinValueInput}
+                changeMaxValueInput={changeMaxValueInput}
+                minValue={minValue}
+                maxValue={maxValue}
+                setValues={setValues}
+            />
+
         </div>
     );
 }
