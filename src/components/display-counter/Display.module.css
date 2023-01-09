@@ -9,7 +9,7 @@
     align-items: center;
 }
 
-.positionInputs {
+.positionMessage {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -18,13 +18,19 @@
     border: 2px solid aquamarine;
     width: 90%;
     height: 60%;
+    font-size: 50px;
 }
 
 .positionButton {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     border: 2px solid aquamarine;
     width: 90%;
     height: 15%;
+
+}
+
+.limit {
+    color: red;
 }

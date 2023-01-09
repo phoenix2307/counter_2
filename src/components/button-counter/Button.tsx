@@ -4,6 +4,7 @@ import s from './Button.module.css'
 type ButtonPropsType = {
     nameButton: string
     callBackHandler: ()=> void
+    disabled?: boolean
 }
 export const Button = (props: ButtonPropsType) => {
 
@@ -14,6 +15,7 @@ export const Button = (props: ButtonPropsType) => {
         <button
             className={s.btn}
             onClick={onClockHandler}
+            disabled={props.disabled}
         >
             {props.nameButton}
         </button>

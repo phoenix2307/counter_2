@@ -1,4 +1,4 @@
-.settingsCounter{
+.settingCounter{
     width: 500px;
     height: 400px;
     background-color: teal;
@@ -9,7 +9,7 @@
     align-items: center;
 }
 
-.positionMessage {
+.positionInputs {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -22,10 +22,9 @@
 
 .positionButton {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     border: 2px solid aquamarine;
     width: 90%;
     height: 15%;
-
 }
