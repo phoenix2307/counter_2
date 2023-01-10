@@ -7,13 +7,16 @@ type ButtonPropsType = {
     disabled?: boolean
 }
 export const Button = (props: ButtonPropsType) => {
-
+let styleBtn = s.btn
+if (props.disabled){
+    styleBtn = s.btn + ' ' + s.disabled
+}
     const onClockHandler = () => {
         props.callBackHandler()
     }
     return (
         <button
-            className={s.btn}
+            className={styleBtn}
             onClick={onClockHandler}
             disabled={props.disabled}
         >

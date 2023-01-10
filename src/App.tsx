@@ -28,22 +28,22 @@ function App() {
     const [minValue, setMinValue] = useState(0)
     const [maxValue, setMaxValue] = useState(0)
 
-    let startValue = minValue
-    let finishValue = maxValue
+    // let startValue = minValue
+    // let finishValue = maxValue
 
     //for Display//---------------------------------------------
-    let [valueCounter, setValueCounter] = useState(startValue)
+    let [valueCounter, setValueCounter] = useState(minValue)
     let [limitValue, setLimitValue] = useState(false)
 
     const incrementValue = () => {
         setValueCounter(++valueCounter)
-        if (valueCounter === finishValue) {
+        if (valueCounter === maxValue) {
             setLimitValue(true)
         }
     }
 
     const resetValue = () => {
-        setValueCounter(0)
+        setValueCounter(minValue)
         setLimitValue(false)
     }
 
@@ -58,11 +58,8 @@ function App() {
         setMaxValue(+value)
     }
 
-    const setValues = (minValues: number, maxValues: number)=> {
-        setMinValue(minValues)
-        setMaxValue(maxValues)
-        // startValue = minValues
-        // finishValue = maxValues
+    const setValues = ()=> {
+        setValueCounter(minValue)
     }
 
 

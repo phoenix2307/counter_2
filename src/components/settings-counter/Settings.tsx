@@ -8,7 +8,8 @@ type SettingsPropsType = {
     changeMaxValueInput: (value: string) => void
     minValue: number
     maxValue: number
-    setValues: (minValues: number, maxValues: number)=>void
+    // setValues: (minValues: number, maxValues: number)=>void
+    setValues: ()=>void
 }
 
 /*
@@ -28,7 +29,8 @@ export const Settings = (props: SettingsPropsType) => {
     }
 
     const setValuesHandler = () => {
-        props.setValues(props.minValue, props.maxValue)
+        // props.setValues(props.minValue, props.maxValue)
+        props.setValues()
     }
 
 
@@ -36,12 +38,12 @@ export const Settings = (props: SettingsPropsType) => {
         <div className={s.settingCounter}>
             <div className={s.positionInputs}>
                 <InputCounter
-                    type={'number'}
+                    type={'text'}
                     span={'min value: '}
                     value={props.minValue}
                     callBackHandler={changeMinValueInput}/>
                 <InputCounter
-                    type={'number'}
+                    type={'text'}
                     span={'max value: '}
                     value={props.maxValue}
                     callBackHandler={changeMaxValueInput}/>

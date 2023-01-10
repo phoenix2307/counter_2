@@ -1,7 +1,9 @@
 .displayCounter{
     width: 500px;
     height: 400px;
-    background-color: teal;
+    background-color: #264b86;
+    border: 2px solid #6ec0ef;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -15,17 +17,20 @@
     gap: 20px;
     justify-content: center;
     align-items: center;
-    border: 2px solid aquamarine;
+    border: 2px solid #6ec0ef;
+    border-radius: 15px;
     width: 90%;
     height: 60%;
-    font-size: 50px;
+    font-size: 80px;
+    color: #6ee4ef;
 }
 
 .positionButton {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border: 2px solid aquamarine;
+    border: 2px solid #6ec0ef;
+    border-radius: 15px;
     width: 90%;
     height: 15%;
 

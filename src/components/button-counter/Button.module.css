@@ -1,4 +1,15 @@
 .btn {
-    height: 40px;
-    min-width: 100px;
+    height: 35px;
+    min-width: 84px;
+    color: #2a4d96;
+    background-color: #82beea;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    font-size: 25px;
+}
+
+.disabled{
+    color: rgba(42, 77, 150, 0.45);
+    background-color: rgba(130, 190, 234, 0.45);
 }
