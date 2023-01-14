@@ -62,6 +62,7 @@ function App() {
         setValueCounter(minValue)
     }
 
+    let errorValue = minValue > maxValue
 
     return (
         <div className="App">
@@ -80,6 +81,7 @@ function App() {
                 minValue={minValue}
                 maxValue={maxValue}
                 setValues={setValues}
+                errorValue={errorValue}
             />
 
         </div>
