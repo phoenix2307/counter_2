@@ -6,13 +6,17 @@ type InputCounterPropsType = {
     span: string
     value: number
     callBackHandler: (value: string) => void
-    errorValue: boolean
+    errorValue?: boolean
 
 }
 
 export const InputCounter = (props: InputCounterPropsType) => {
 
-    let inputStyle = s.inputStyle + props.errorValue ? ' ' + s.error : ''
+    let inputStyle = s.inputStyle
+    if(props.errorValue){
+        inputStyle = s.inputStyle + ' ' + s.error
+    }
+
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         props.callBackHandler(e.currentTarget.value)
     }

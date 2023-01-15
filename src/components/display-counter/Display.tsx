@@ -9,6 +9,7 @@ type DisplayPropsType = {
     increment: () => void
     reset: () => void
     limitValue: boolean
+    errorValue?: boolean
 }
 
 export const Display = (props: DisplayPropsType) => {

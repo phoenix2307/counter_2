@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {Display} from "./components/display-counter/Display";
 import {Settings} from "./components/settings-counter/Settings";
+import {TestComp} from "./components/TestComp";
 
 export type ButtonsType = {
     increment: string
@@ -11,14 +12,6 @@ export type ButtonsType = {
 
 function App() {
 
-    /*
-    Не працює установка стартового значення на дисплеї. Фінішне значення фіксується нормально
-    При резеті завжди падає в нуль
-    Походу є косяки в логіці зі стейтами, або невчасно визивається стейт
-    Продумати, умова порівняння між min і max має робитися в Display...
-
-     */
-
     const buttons: ButtonsType = {
         increment: 'inc',
         reset: 'reset',
@@ -26,10 +19,7 @@ function App() {
     }
 
     const [minValue, setMinValue] = useState(0)
-    const [maxValue, setMaxValue] = useState(0)
-
-    // let startValue = minValue
-    // let finishValue = maxValue
+    const [maxValue, setMaxValue] = useState(5)
 
     //for Display//---------------------------------------------
     let [valueCounter, setValueCounter] = useState(minValue)
@@ -49,39 +39,90 @@ function App() {
 
     //for Settings//---------------------------------------------
 
+    /*
+  * прописати логіку перевірки*/
+    let errorValue = false
 
     const changeMinValueInput = (value: string) => {
         setMinValue(+value)
+        errorValue = minValue > maxValue
+        console.log(errorValue)
+        console.log(minValue)
+        debugger
     }
 
     const changeMaxValueInput = (value: string) => {
         setMaxValue(+value)
+        errorValue = minValue > maxValue
+        console.log(errorValue)
     }
 
-    const setValues = ()=> {
+    const setValues = () => {
         setValueCounter(minValue)
     }
 
-    let errorValue = minValue > maxValue
+    /*TEST INPUT*/
+
+    const span1 = 'start value'
+    const span2 = 'finish value'
+
+    const [startValue, setStartValue] = useState(0)
+    const [finishValue, setFinishValue] = useState(0)
+    const [error1, setError1] = useState(false)
+    const [error2, setError2] = useState(false)
+
+    const changeValue1 = (value: number) => {
+        setStartValue(value)
+        console.log(value)
+        console.log(startValue)
+    }
+
+    const changeValue2 = (value: number) => {
+        setFinishValue(value)
+        console.log(value)
+        console.log(startValue)
+    }
+
+
+    /*
+    * error опрацьовується в верхньому компоненті
+    * він міняє відображення на Display та стан інпутів, кнопки Set в Settings
+    * фіксується по onChange!!!!
+    *
+    * */
 
     return (
         <div className="App">
 
-            <Display
-                valueCounter={valueCounter}
-                nameButtons={buttons}
-                increment={incrementValue}
-                reset={resetValue}
-                limitValue={limitValue}
+            {/*<Display*/}
+            {/*    valueCounter={valueCounter}*/}
+            {/*    nameButtons={buttons}*/}
+            {/*    increment={incrementValue}*/}
+            {/*    reset={resetValue}*/}
+            {/*    limitValue={limitValue}*/}
+            {/*/>*/}
+
+            {/*<Settings*/}
+            {/*    changeMinValueInput={changeMinValueInput}*/}
+            {/*    changeMaxValueInput={changeMaxValueInput}*/}
+            {/*    minValue={minValue}*/}
+            {/*    maxValue={maxValue}*/}
+            {/*    setValues={setValues}*/}
+            {/*    errorValue={errorValue}*/}
+            {/*/>*/}
+
+            <TestComp
+                value={startValue}
+                span={span1}
+                errorStatus={error1}
+                callback={changeValue1}
             />
 
-            <Settings
-                changeMinValueInput={changeMinValueInput}
-                changeMaxValueInput={changeMaxValueInput}
-                minValue={minValue}
-                maxValue={maxValue}
-                setValues={setValues}
-                errorValue={errorValue}
+            <TestComp
+                value={finishValue}
+                span={span2}
+                errorStatus={error2}
+                callback={changeValue2}
             />
 
         </div>

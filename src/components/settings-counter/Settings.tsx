@@ -10,7 +10,7 @@ type SettingsPropsType = {
     maxValue: number
     // setValues: (minValues: number, maxValues: number)=>void
     setValues: () => void
-    errorValue: boolean
+    errorValue?: boolean
 }
 
 /*
@@ -20,6 +20,9 @@ type SettingsPropsType = {
  */
 
 export const Settings = (props: SettingsPropsType) => {
+
+    const [minSetValue, setMinSetValue] = useState(props.minValue)
+    const [maxSetValue, setMaxSetValue] = useState(props.maxValue)
 
     const changeMinValueInput = (value: string) => {
         props.changeMinValueInput(value)
@@ -42,14 +45,14 @@ export const Settings = (props: SettingsPropsType) => {
                 <InputCounter
                     type={'text'}
                     span={'min value: '}
-                    value={props.minValue}
+                    value={minSetValue}
                     callBackHandler={changeMinValueInput}
                     errorValue={props.errorValue}/>
 
                 <InputCounter
                     type={'text'}
                     span={'max value: '}
-                    value={props.maxValue}
+                    value={maxSetValue}
                     callBackHandler={changeMaxValueInput}
                     errorValue={props.errorValue}/>
 

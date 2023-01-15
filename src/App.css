@@ -377,3 +377,13 @@ textarea {
   align-items: center;
 }
 
+/*for App_*/
+
+.blockStyle{
+  width: 500px;
+  height: 400px;
+  background-color: #182a36;
+  border: 7px solid #6ec0ef;
+  border-radius: 15px;
+}
+

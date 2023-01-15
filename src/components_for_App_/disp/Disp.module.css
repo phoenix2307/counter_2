@@ -1,0 +1,31 @@
+.disp{
+display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
+.countValue{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 82%;
+    height: 60%;
+    border: 5px solid #6ec0ef;
+    border-radius: 15px;
+    color: #6ec0ef;
+    font-size: 100px;
+}
+
+.errorStyle {
+    color: red;
+}
+
+.blockBtn{
+    width: 82%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
