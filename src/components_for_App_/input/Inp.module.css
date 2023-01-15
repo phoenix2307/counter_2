@@ -6,3 +6,8 @@
     border: none;
     border-radius: 5px;
 }
+
+.inputError{
+    background-color: palevioletred;
+    font-weight: bold;
+}
