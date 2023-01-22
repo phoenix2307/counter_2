@@ -21,16 +21,18 @@ function App_() {
     }
 
     // init values from server
-    const [initMinValue, setInitMinValue]= useState(4)
-    const [initMaxValue, setInitMaxValue]= useState(7)
+    const [initMinValue, setInitMinValue] = useState(0)
+    const [initMaxValue, setInitMaxValue] = useState(5)
 
 
     const [error, setError] = useState(false)
     const [disable, setDisable] = useState(false)
 
-    const [minValue, setMinValue] = useState(2)
-    const [maxValue, setMaxValue] = useState(5)
+    const [minValue, setMinValue] = useState(initMinValue)
+    const [maxValue, setMaxValue] = useState(initMaxValue)
     const [currentValue, setCurrentValue] = useState(minValue)
+
+
 
 
     // ------------------ ACTION ------------------ //
@@ -44,7 +46,9 @@ function App_() {
     //     setMaxValue(+value)
     // }
 
+
     function setNewValues(minValue: number, maxValue: number) {
+        setError(false)
         setInitMinValue(minValue)
         setInitMaxValue(maxValue)
         setMinValue(+minValue)
@@ -54,7 +58,7 @@ function App_() {
 
     function incrementCount() {
         setCurrentValue(actualValue => actualValue + 1)
-        if (currentValue === maxValue){
+        if (currentValue === maxValue) {
             setError(true)
         }
 
@@ -62,6 +66,14 @@ function App_() {
 
     function resetCount() {
         setCurrentValue(minValue)
+    }
+
+    function setNewMin(value:number){
+        setMinValue(value)
+    }
+
+    function setNewMax(value:number){
+        setMaxValue(value)
     }
 
     return (
@@ -76,6 +88,8 @@ function App_() {
 
             <Set initMinValue={initMinValue}
                  initMaxValue={initMaxValue}
+                 setNewMin={setNewMin}
+                 setNewMax={setNewMax}
                  namesBtn={buttons}
                  setNewValues={setNewValues}
                  errorState={error}

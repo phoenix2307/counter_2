@@ -29,3 +29,8 @@ display: flex;
     justify-content: space-around;
     align-items: center;
 }
+
+.errorMessageStyle {
+    color: red;
+    font-size: 36px;
+}
