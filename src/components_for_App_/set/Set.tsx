@@ -22,16 +22,17 @@ export const Set = (props: SetType) => {
 
     const [minValueInSet, setMinValueInSet] = useState(props.initMinValue)
     const [maxValueInSet, setMaxValueInSet] = useState(props.initMaxValue)
+    const [disabled, setDisabled] = useState(false)
 
 
     const setStyle = 'blockStyle ' + s.set
 
     let blockInputStyle = s.blockInput
-    let disableApply = false
+    let disableApply = disabled
     let inputError = false
 
     if (minValueInSet === maxValueInSet || minValueInSet > maxValueInSet) {
-        disableApply = true
+        // disableApply = true
         inputError = true
         blockInputStyle = blockInputStyle + ' ' + s.blockInputError
     }
@@ -41,16 +42,19 @@ export const Set = (props: SetType) => {
 
     function changeMin(value: number) {
         setMinValueInSet(value)
-        props.setNewMin(value)
+        setDisabled(false)
     }
 
     function changeMax(value: number) {
         setMaxValueInSet(value)
-        props.setNewMax(value)
+        setDisabled(false)
     }
 
     function setValueHandler() {
+        props.setNewMin(minValueInSet)
+        props.setNewMax(maxValueInSet)
         props.setNewValues(minValueInSet, maxValueInSet)
+        setDisabled(true)
     }
 
     return (
