@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import s from './Disp.module.css'
 import {Btn} from "../btn/Btn";
 import {ButtonsType} from "../../App_";
@@ -8,7 +8,6 @@ type DispType = {
     minValue: number
     maxValue: number
     namesBtn: ButtonsType
-    disableState: boolean
     callbackCount: () => void
     callbackReset: () => void
 

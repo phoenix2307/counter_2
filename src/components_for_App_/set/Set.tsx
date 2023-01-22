@@ -15,15 +15,13 @@ type SetType = {
     errorState: boolean
     setNewMin: (value:number) => void
     setNewMax: (value:number) => void
-    // checkError:()=>void
-    disableState: boolean
 }
 
 export const Set = (props: SetType) => {
     //  ------------ STATE ----------------- //
 
-    const [minValueInSet, setMinValueInSet] = useState(+props.initMinValue)
-    const [maxValueInSet, setMaxValueInSet] = useState(+props.initMaxValue)
+    const [minValueInSet, setMinValueInSet] = useState(props.initMinValue)
+    const [maxValueInSet, setMaxValueInSet] = useState(props.initMaxValue)
 
 
     const setStyle = 'blockStyle ' + s.set
@@ -36,7 +34,6 @@ export const Set = (props: SetType) => {
         disableApply = true
         inputError = true
         blockInputStyle = blockInputStyle + ' ' + s.blockInputError
-        // props.checkError()
     }
 
 
@@ -66,8 +63,6 @@ export const Set = (props: SetType) => {
                          error={inputError}
                          callback={changeMin}/>
                 </div>
-
-                {/*{'Message for Error'}*/}
 
                 <div className={s.inputRow}>
                     <span>{'max value :'}</span>

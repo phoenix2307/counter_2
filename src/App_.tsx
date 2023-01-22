@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Set} from "./components_for_App_/set/Set";
 import {Disp} from "./components_for_App_/disp/Disp";
@@ -21,39 +21,46 @@ function App_() {
     }
 
     // init values from server
-    const [initMinValue, setInitMinValue] = useState(0)
-    const [initMaxValue, setInitMaxValue] = useState(5)
 
+
+    let initMinValue = getMinValue()
+    function getMinValue (){
+        let newMinValue = localStorage.getItem('min-value')
+        if(newMinValue){
+            return JSON.parse(newMinValue)
+        }
+    }
+
+    let initMaxValue = getMaxValue()
+    function getMaxValue (){
+        let newMaxValue = localStorage.getItem('max-value')
+        if(newMaxValue){
+            return JSON.parse(newMaxValue)
+        }
+    }
 
     const [error, setError] = useState(false)
-    const [disable, setDisable] = useState(false)
-
     const [minValue, setMinValue] = useState(initMinValue)
     const [maxValue, setMaxValue] = useState(initMaxValue)
-    const [currentValue, setCurrentValue] = useState(minValue)
-
-
-
+    const [currentValue, setCurrentValue] = React.useState<number>(minValue)
 
     // ------------------ ACTION ------------------ //
-    // //set minimum from Set
-    // function setMinimum(value: string) {
-    //     setMinValue(+value)
-    // }
-    //
-    // //set maximum from Set
-    // function setMaximum(value: string) {
-    //     setMaxValue(+value)
-    // }
 
+    useEffect(() => {
+        setNewValues(minValue, maxValue)
+    }, [minValue, maxValue])
+
+    function setToLS() {
+        localStorage.setItem('min-value', JSON.stringify(minValue))
+        localStorage.setItem('max-value', JSON.stringify(maxValue))
+    }
 
     function setNewValues(minValue: number, maxValue: number) {
         setError(false)
-        setInitMinValue(minValue)
-        setInitMaxValue(maxValue)
-        setMinValue(+minValue)
-        setMaxValue(+maxValue)
-        setCurrentValue(+minValue)
+        setMinValue(minValue)
+        setMaxValue(maxValue)
+        setToLS()
+        setCurrentValue(minValue)
     }
 
     function incrementCount() {
@@ -61,18 +68,17 @@ function App_() {
         if (currentValue === maxValue) {
             setError(true)
         }
-
     }
 
     function resetCount() {
         setCurrentValue(minValue)
     }
 
-    function setNewMin(value:number){
+    function setNewMin(value: number) {
         setMinValue(value)
     }
 
-    function setNewMax(value:number){
+    function setNewMax(value: number) {
         setMaxValue(value)
     }
 
@@ -82,9 +88,9 @@ function App_() {
                   minValue={minValue}
                   maxValue={maxValue}
                   namesBtn={buttons}
-                  disableState={disable}
                   callbackCount={incrementCount}
-                  callbackReset={resetCount}/>
+                  callbackReset={resetCount}
+            />
 
             <Set initMinValue={initMinValue}
                  initMaxValue={initMaxValue}
@@ -93,7 +99,7 @@ function App_() {
                  namesBtn={buttons}
                  setNewValues={setNewValues}
                  errorState={error}
-                 disableState={disable}/>
+            />
         </div>
     );
 }
